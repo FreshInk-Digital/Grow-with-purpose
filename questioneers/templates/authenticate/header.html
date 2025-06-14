@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
+  <title>{% block title %}Grow with purpose | GWP{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet">
+  <script src="{% static 'assets/fontawesome/42d5adcbca.html' %}" crossorigin="anonymous"></script>
+  <link href="{% static 'assets/css/soft-ui-dashboard.min9f1e.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent mt-4">
+    <div class="container">
+      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="">
+        GWP
+      </a> 
+    </div>
+  </nav>
+  <!-- End Navbar -->
+
+  <!-- Starts main-content -->
+  <main class="main-content mt-0">
+
+        <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('{% static 'assets/img/curved-images/curved9.jpg' %}');">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto">
+            <h1 class="text-white mb-2 mt-5">Welcome!</h1>
+            <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% block content %}
+
+
+{% endblock %}
+
+</main>
+  <footer class="footer py-5">
+    <div class="container text-center">
+      <div class="row mb-4">
+        <div class="col">
+          <a href="#" class="text-secondary mx-3">Company</a>
+          <a href="#" class="text-secondary mx-3">About Us</a>
+          <a href="#" class="text-secondary mx-3">Team</a>
+          <a href="#" class="text-secondary mx-3">Products</a>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col">
+          <a href="#" class="text-secondary mx-2 fab fa-dribbble"></a>
+          <a href="#" class="text-secondary mx-2 fab fa-twitter"></a>
+          <a href="#" class="text-secondary mx-2 fab fa-instagram"></a>
+          <a href="#" class="text-secondary mx-2 fab fa-pinterest"></a>
+          <a href="#" class="text-secondary mx-2 fab fa-github"></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="mb-0 text-secondary">Designed & Monitored by Freshink Digital</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/dragula/dragula.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/jkanban/jkanban.js' %}"></script>
+  <script src="{% static 'assets/js/soft-ui-dashboard.min9f1e.js' %}"></script>
+</body>
+</html>
