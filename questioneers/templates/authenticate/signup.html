@@ -51,29 +51,44 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form" class="text-start">
-                <div class="mb-3">
-                  <input type="email" class="form-control" placeholder="Email" aria-label="Email">
-                </div>
-                <div class="mb-3">
-                  <input type="password" class="form-control" placeholder="Password" aria-label="Password">
-                </div>
-                <!-- <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="rememberMe">
-                  <label class="form-check-label" for="rememberMe">Remember me</label>
-                </div> -->
-                <div class="text-center">
-                  <button type="button" class="btn bg-gradient-info w-100 my-4 mb-2">Sign up</button>
-                </div>
-                <div class="mb-2 position-relative text-center">
-                  <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
-                    or
-                  </p>
-                </div>
-                <div class="text-center">
-  <a href="{% url 'signin' %}" class="btn bg-gradient-dark w-100 mt-2 mb-4">Sign in</a>
-</div>
-              </form>
+              <form method="post" class="text-start">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    {{ form.username }}
+    {{ form.username.errors }}
+  </div>
+
+  <div class="mb-3">
+    {{ form.email }}
+    {{ form.email.errors }}
+  </div>
+
+  <div class="mb-3">
+    {{ form.password1 }}
+    {{ form.password1.errors }}
+  </div>
+
+  <div class="mb-3">
+    {{ form.password2 }}
+    {{ form.password2.errors }}
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">Sign up</button>
+  </div>
+
+  <div class="mb-2 position-relative text-center">
+    <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
+      or
+    </p>
+  </div>
+
+  <div class="text-center">
+    <a href="{% url 'signin' %}" class="btn bg-gradient-dark w-100 mt-2 mb-4">Sign in</a>
+  </div>
+</form>
+
             </div>
           </div>
         </div>
