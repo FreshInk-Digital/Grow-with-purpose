@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Inquiry
 
+
+# sign up form
 class SignupForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
         'class': 'form-control',
@@ -30,3 +33,15 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+# inquiry form
+class InquiryForm(forms.ModelForm):
+    class Meta:
+        model = Inquiry
+        exclude = ['user', 'submitted_at']
+        widgets = {
+            field: forms.TextInput(attrs={'class': 'form-control', 'required': True})
+            for field in Inquiry._meta.get_fields()
+            if field.name not in ['id', 'user', 'submitted_at']
+        }

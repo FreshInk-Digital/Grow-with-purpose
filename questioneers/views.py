@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import SignupForm
+from .forms import SignupForm, InquiryForm
+from .models import Inquiry
 
 
 # sign in logic
@@ -40,11 +41,27 @@ def signout(request):
     return redirect('signin')
 
 
+# dashboard logic
 @login_required
 def dashboard(request):
     return render(request, 'main/dashboard.html')
 
 
+# inquiry logic
 @login_required
 def inquiry(request):
-    return render(request, 'main/inquiry.html')
+    latest_inquiry = Inquiry.objects.filter(user=request.user).order_by('-submitted_at').first()
+
+    if request.method == 'POST':
+        form = InquiryForm(request.POST)
+        if form.is_valid():
+            inquiry = form.save(commit=False)
+            inquiry.user = request.user
+            inquiry.save()
+            messages.success(request, "Your inquiry was submitted successfully!")
+            return redirect('inquiry')  # redirect to same page
+    else:
+        # Prefill with latest inquiry if exists
+        form = InquiryForm(instance=latest_inquiry)
+
+    return render(request, 'main/inquiry.html', {'form': form})
