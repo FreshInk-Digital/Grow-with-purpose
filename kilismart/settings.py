@@ -13,9 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3hwg-&c*=f#q*s+g=^0f0uz#jb-^02ig4p_9n2gj%2l)giaw(p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -107,6 +107,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -118,3 +119,6 @@ LOGIN_URL = 'signin'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# static files handling
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'

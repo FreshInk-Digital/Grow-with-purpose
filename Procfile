@@ -1,0 +1,1 @@
+web: gunicorn kilismart.wsgi:application --log-file -
