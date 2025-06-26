@@ -65,3 +65,25 @@ def inquiry(request):
         form = InquiryForm(instance=latest_inquiry)
 
     return render(request, 'main/inquiry.html', {'form': form})
+
+
+# inquiry results logic
+@login_required
+def inquiry_results(request):
+    latest_inquiry = Inquiry.objects.filter(user=request.user).order_by('-submitted_at').first()
+
+    if not latest_inquiry:
+        messages.info(request, "You haven't submitted any inquiry yet.")
+        return redirect('inquiry')
+
+    answers = {
+        "Create": [latest_inquiry.create],
+        "Study": [latest_inquiry.study],
+        "Work(Vocation)": [latest_inquiry.work],
+        "Feel": [latest_inquiry.feel],
+        "Move(Body)": [latest_inquiry.move],
+        "Be(Rest & Soul)": [latest_inquiry.be],
+        "Connect": [latest_inquiry.connect]
+    }
+
+    return render(request, 'main/inquiry_results.html', {"answers": answers})

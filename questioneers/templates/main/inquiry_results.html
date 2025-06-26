@@ -1,0 +1,36 @@
+{% extends "./main.html" %}
+{% block title %}Inquiry Results – GWP{% endblock %}
+{% block dashboard %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card bg-light border">
+        <div class="card-header text-center">
+          <h5 class="mb-0">📝 Your Past Inquiry Summary</h5>
+          <p class="text-sm mb-0">These are the answers you've shared with us.</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+
+            {% for category, responses in answers.items %}
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                  <h6 class="text-dark text-uppercase mb-3">{{ category }}</h6>
+                  <ul class="list-group list-group-flush">
+                    {% for item in responses %}
+                      <li class="list-group-item px-0 py-1 border-0">• {{ item }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
