@@ -35,16 +35,20 @@ def signup(request):
     return render(request, 'authenticate/signup.html', {'form': form})
 
 
+
 # sign out logic
 def signout(request):
     logout(request)
     return redirect('signin')
 
 
+
 # dashboard logic
 @login_required
 def dashboard(request):
-    return render(request, 'main/dashboard.html')
+    return render(request, 'main/dashboard.html', {
+        'page_title': 'Dashboard'
+    })
 
 
 # inquiry logic
@@ -59,13 +63,14 @@ def inquiry(request):
             inquiry.user = request.user
             inquiry.save()
             messages.success(request, "Your inquiry was submitted successfully!")
-            return redirect('inquiry')  # redirect to same page
+            return redirect('inquiry')
     else:
-        # Prefill with latest inquiry if exists
         form = InquiryForm(instance=latest_inquiry)
 
-    return render(request, 'main/inquiry.html', {'form': form})
-
+    return render(request, 'main/inquiry.html', {
+        'form': form,
+        'page_title': 'Inquiry'
+    })
 
 # inquiry results logic
 @login_required
@@ -86,4 +91,7 @@ def inquiry_results(request):
         "Connect": [latest_inquiry.connect]
     }
 
-    return render(request, 'main/inquiry_results.html', {"answers": answers})
+    return render(request, 'main/inquiry_results.html', {
+        "answers": answers,
+        "page_title": "Inquiry Results"
+    })
