@@ -14,15 +14,15 @@
   </div>
 {% endif %}
 
-
-      <div class="container-fluid my-3 py-3">
-        <div class="row mb-5">
+    <div class="row mt-0">
+      <div class="container-fluid my-0 py-0">
+        <div class="row mb-0">
           <div class="col-lg-3">
             <div class="card position-sticky top-1">
               <ul class="nav flex-column bg-white border-radius-lg p-3">
 
                 <li class="nav-item pt-0">
-                  <a class="nav-link text-body" data-scroll="" href="#basic-info">
+                  <a class="nav-link text-body" data-scroll="" href="#create">
                     <div class="icon me-2">
                       🎨
                     </div>
@@ -30,7 +30,7 @@
                   </a>
                 </li>
                 <li class="nav-item pt-2">
-                  <a class="nav-link text-body" data-scroll="" href="#password">
+                  <a class="nav-link text-body" data-scroll="" href="#study">
                     <div class="icon me-2">
                        📖
                     </div>
@@ -38,7 +38,7 @@
                   </a>
                 </li>
                 <li class="nav-item pt-2">
-                  <a class="nav-link text-body" data-scroll="" href="#2fa">
+                  <a class="nav-link text-body" data-scroll="" href="#work">
                     <div class="icon me-2">
                       🛠️ 
                     </div>
@@ -46,7 +46,7 @@
                   </a>
                 </li>
                 <li class="nav-item pt-2">
-                  <a class="nav-link text-body" data-scroll="" href="#accounts">
+                  <a class="nav-link text-body" data-scroll="" href="#feel">
                     <div class="icon me-2">
                       ❤️
                     </div>
@@ -54,7 +54,7 @@
                   </a>
                 </li>
                 <li class="nav-item pt-2">
-                  <a class="nav-link text-body" data-scroll="" href="#notifications">
+                  <a class="nav-link text-body" data-scroll="" href="#move">
                     <div class="icon me-2">
                       🏃
                     </div>
@@ -62,7 +62,7 @@
                   </a>
                 </li>
                 <li class="nav-item pt-2">
-                  <a class="nav-link text-body" data-scroll="" href="#sessions">
+                  <a class="nav-link text-body" data-scroll="" href="#be">
                     <div class="icon me-2">
                       🌙
                     </div>
@@ -70,7 +70,7 @@
                   </a>
                 </li>
                 <li class="nav-item pt-2">
-                  <a class="nav-link text-body" data-scroll="" href="#delete">
+                  <a class="nav-link text-body" data-scroll="" href="#connect">
                     <div class="icon me-2">
                        🧩
                     </div>
@@ -94,215 +94,216 @@
             <form method="post">
             {% csrf_token %}
             
-            <!-- Card Create -->
-            <div class="card mt-0" id="basic-info">
-              <div class="card-header">
-                <h5>Create</h5>
-              </div>
-              <div class="card-body pt-0">
-                <div class="row">
-
-                  <div class="col-6">
-                    <label class="form-label">
-                    What do you love to make and create. With your imagination
-                    or tool?
-                    </label>
-                    <div class="input-group">
-                      <input 
-                        id="firstName"
-                        name="create"
-                        class="form-control"
-                        type="text"
-                        placeholder="Your may like to draw, crafting"
-                        required="required"
-                      >
+              <!-- Card Create -->
+              <div class="card mt-0" id="create">
+                <div class="card-header">
+                  <h5>Create</h5>
+                  <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit libero.</p>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="form-label">
+                      What do you love to make and create. With your imagination
+                      or tool?
+                      </label>
+                      <div class="input-group">
+                        <input 
+                          id="create"
+                          name="create"
+                          class="form-control"
+                          type="text"
+                          placeholder="Your may like to draw, crafting"
+                          required="required"
+                        >
+                      </div>
                     </div>
+
                   </div>
+              </div>
+
+              <!-- Card Study -->
+              <div class="card mt-2" id="study">
+                <div class="card-header">
+                  <h5>Study</h5>
+                  <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit libero.</p>
+                </div>
+                <div class="card-body pt-0">
+                <div class="row">
+                      <div class="col-6">
+                      <label class="form-label">
+                          What subjects or skills do you enjoy learning?
+                      </label>
+                      <div class="input-group">
+                        <input 
+                          id="study"
+                          name="study"
+                          class="form-control"
+                          type="text"
+                          placeholder="Math, Animals, Chemistry"
+                          required="required"
+                        >
+                      </div>
+                    </div>
 
                 </div>
-            </div>
-
-            <!-- Card Study -->
-            <div class="card mt-2" id="password">
-              <div class="card-header">
-                <h5>Study</h5>
-              </div>
-              <div class="card-body pt-0">
-               <div class="row">
-                    <div class="col-6">
-                    <label class="form-label">
-                         What subjects or skills do you enjoy learning?
-                    </label>
-                    <div class="input-group">
-                      <input 
-                        id="firstName"
-                        name="study"
-                        class="form-control"
-                        type="text"
-                        placeholder="Math, Animals, Chemistry"
-                        required="required"
-                      >
-                    </div>
-                  </div>
-
-               </div>
-              
-              </div>
-            </div>
-
-            <!-- Card Work(Vocation) -->
-            <div class="card mt-4" id="2fa">
-              <div class="card-header d-flex">
-                <h5 class="mb-0">Work(Vocation)</h5>
-                {% comment %} <span class="badge badge-success ms-auto">Enabled</span> {% endcomment %}
-              </div>
-              <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
-                    <label class="form-label">
-                         What kind of work would you like to do, joinery?
-                    </label>
-                    <div class="input-group">
-                      <input 
-                        id="firstName"
-                        name="work"
-                        class="form-control"
-                        type="text"
-                        placeholder="Doctor, Programming, Nurse"
-                        required="required"
-                      >
-                    </div>
-                  </div>
-
-               </div>
-              </div>
-            </div>
-
-            <!-- Card Feel -->
-            <div class="card mt-4" id="accounts">
-              <div class="card-header">
-                <h5>Feel</h5>
-                <p class="text-sm">Here you can setup and manage your integration settings.</p>
-              </div>
-              <div class="card-body pt-0">
-                <div class="row">
-                    <div class="col-6">
-                    <label class="form-label">
-                         How are you feeling inside these days?
-                    </label>
-                    <div class="input-group">
-                      <input 
-                        id="firstName"
-                        name="feel"
-                        class="form-control"
-                        type="text"
-                        placeholder="I feel ok, but a bit sad"
-                        required="required"
-                      >
-                    </div>
-                  </div>
-
-              </div>
-            </div>
-
-            <!-- Card Move(Body) -->
-            <div class="card mt-4" id="notifications">
-              <div class="card-header">
-                <h5>Move(Body)</h5>
-                <p class="text-sm">Choose how you receive notifications. These notification settings apply to the things you’re watching.</p>
-              </div>
-              <div class="card-body pt-0">
-                <div class="row">
-                    <div class="col-6">
-                    <label class="form-label">
-                         How does your body like to move and stay active?
-                    </label>
-                    <div class="input-group">
-                      <input 
-                        id="firstName"
-                        name="move"
-                        class="form-control"
-                        type="text"
-                        placeholder="Playing basketball, Dancing"
-                        required="required"
-                      >
-                    </div>
-                  </div>
-
-              </div>
-              </div>
-            </div>
-
-            <!-- Card Be(Rest & Soul) -->
-            <div class="card mt-4" id="sessions">
-              <div class="card-header pb-3">
-                <h5>Be(Rest & Soul)</h5>
-                <p class="text-sm">This is a list of devices that have logged into your account. Remove those that you do not recognize.</p>
-              </div>
-              <div class="card-body pt-0">
-                <div class="row">
-                    <div class="col-6">
-                    <label class="form-label">
-                         What helps you stay calm, peaceful or closer to something bigger?
-                    </label>
-                    <div class="input-group">
-                      <input 
-                        id="firstName"
-                        name="be"
-                        class="form-control"
-                        type="text"
-                        placeholder="Praying, Sitting quietly in nature"
-                        required="required"
-                      >
-                    </div>
-                  </div>
-
-              </div>
                 
                 </div>
               </div>
-            </div>
 
-            <!-- Card Connect -->
-            <div class="card mt-4" id="delete">
-              <div class="card-header">
-                <h5>Connect</h5>
-                <p class="text-sm mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-              </div>
-              <div class="card-body d-sm-flex pt-0">
-                <div class="row">
-                    <div class="col-12">
-                    <label class="form-label">
-                    Who or what do you feel close to?
-                    </label>
-                    <div class="input-group">
-                      <input 
-                        id="firstName"
-                        name="connect"
-                        class="form-control"
-                        type="text"
-                        placeholder="Family, Friends, My Dog"
-                        required="required"
-                      >
+              <!-- Card Work(Vocation) -->
+              <div class="card mt-2" id="work">
+                <div class="card-header">
+                  <h5>Work(Vocation)</h5>
+                  <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit libero.</p>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                      <div class="col-6">
+                      <label class="form-label">
+                          What kind of work would you like to do, joinery?
+                      </label>
+                      <div class="input-group">
+                        <input 
+                          id="work"
+                          name="work"
+                          class="form-control"
+                          type="text"
+                          placeholder="Doctor, Programming, Nurse"
+                          required="required"
+                        >
+                      </div>
                     </div>
-                  </div>
-
-                    <button 
-                      class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0"
-                      type="submit"
-                    >
-                      Inquiry
-                    </button>
-                  </div>
+                </div>
+                </div>
               </div>
-            </div>
-            
-          </form>
-          </div>
-        </div>
 
+              <!-- Card Feel -->
+              <div class="card mt-2" id="feel">
+                <div class="card-header">
+                  <h5>Feel</h5>
+                  <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit libero.</p>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                      <div class="col-6">
+                      <label class="form-label">
+                          How are you feeling inside these days?
+                      </label>
+                      <div class="input-group">
+                        <input 
+                          id="feel"
+                          name="feel"
+                          class="form-control"
+                          type="text"
+                          placeholder="I feel ok, but a bit sad"
+                          required="required"
+                        >
+                      </div>
+                    </div>
+
+                </div>
+              </div>
+
+              <!-- Card Move(Body) -->
+              <div class="card mt-2" id="move">
+                <div class="card-header">
+                  <h5>Move(Body)</h5>
+                  <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit libero.</p>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                      <div class="col-6">
+                      <label class="form-label">
+                          How does your body like to move and stay active?
+                      </label>
+                      <div class="input-group">
+                        <input 
+                          id="move"
+                          name="move"
+                          class="form-control"
+                          type="text"
+                          placeholder="Playing basketball, Dancing"
+                          required="required"
+                        >
+                      </div>
+                    </div>
+
+                </div>
+                </div>
+              </div>
+
+              <!-- Card Be(Rest & Soul) -->
+              <div class="card mt-2" id="be">
+                <div class="card-header pb-3">
+                  <h5>Be(Rest & Soul)</h5>
+                  <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit libero.</p>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                      <div class="col-6">
+                      <label class="form-label">
+                          What helps you stay calm, peaceful or closer to something bigger?
+                      </label>
+                      <div class="input-group">
+                        <input 
+                          id="be"
+                          name="be"
+                          class="form-control"
+                          type="text"
+                          placeholder="Praying, Sitting quietly in nature"
+                          required="required"
+                        >
+                      </div>
+                    </div>
+
+                </div>
+                  
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Connect -->
+              <div class="card mt-2" id="connect">
+                <div class="card-header">
+                  <h5>Connect</h5>
+                  <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit libero.</p>
+                </div>
+                <div class="card-body d-sm-flex pt-0">
+                  <div class="row">
+                      <div class="col-12">
+                      <label class="form-label">
+                      Who or what do you feel close to?
+                      </label>
+                      <div class="input-group">
+                        <input 
+                          id="connect"
+                          name="connect"
+                          class="form-control"
+                          type="text"
+                          placeholder="Family, Friends, My Dog"
+                          required="required"
+                        >
+                      </div>
+                    </div>
+
+                      <button 
+                        class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0"
+                        type="submit"
+                      >
+                        Inquiry
+                      </button>
+                    </div>
+                </div>
+              </div>
+            
+            </form>
+          </div>
+
+        </div>
         
       </div>
+    </div>
 
       <script>
   setTimeout(function() {
@@ -315,6 +316,4 @@
   }, 5000); // 5 seconds
 </script>
 
-    
-   
 {% endblock dashboard %}
