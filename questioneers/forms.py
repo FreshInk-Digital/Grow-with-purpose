@@ -1,7 +1,19 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Inquiry
+from .models import Inquiry, UserProfile
+
+
+# user form
+class UserProfileForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+    email = forms.EmailField(required=True)
+    username = forms.CharField(max_length=150, required=True)
+
+    class Meta:
+        model = UserProfile
+        fields = ['bio']
 
 
 # sign up form

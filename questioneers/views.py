@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import SignupForm, InquiryForm
-from .models import Inquiry
+from .forms import SignupForm, InquiryForm, UserProfileForm
+from .models import Inquiry, UserProfile
 
 
 # sign in logic
@@ -40,6 +40,11 @@ def signup(request):
 def signout(request):
     logout(request)
     return redirect('signin')
+
+
+# reset-password logic
+def reset_password(request):
+    return render(request, 'authenticate/reset_password.html')
 
 
 
@@ -95,3 +100,34 @@ def inquiry_results(request):
         "answers": answers,
         "page_title": "Inquiry Results"
     })
+
+
+# Profile
+@login_required
+def profile(request):
+    user = request.user
+    profile, _ = UserProfile.objects.get_or_create(user=user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.email = form.cleaned_data['email']
+            user.username = form.cleaned_data['username']
+            user.save()
+            form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect('profile')
+    else:
+        form = UserProfileForm(
+            instance=profile,
+            initial={
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'email': user.email,
+                'username': user.username,
+            }
+        )
+
+    return render(request, 'main/profile.html', {'form': form})

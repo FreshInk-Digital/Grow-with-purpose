@@ -1,0 +1,80 @@
+{% extends "./main.html" %}
+{% load static %}
+{% block title %}Profile – GWP{% endblock %}
+
+{% block dashboard %}
+
+   {% if messages %}
+  <div id="message-container">
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="container px-0">
+  <div class="row">
+    <div class="col-12 col-lg-8 m-auto">
+      <div class="card p-4 border-radius-xl bg-white shadow-sm">
+        <h5 class="font-weight-bolder mb-0">Edit Profile</h5>
+        <p class="mb-0 text-sm text-muted">Update your personal information</p>
+
+        <form method="post" class="mt-4">
+          {% csrf_token %}
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="first_name" class="form-label">First Name</label>
+              <input type="text" name="first_name" id="first_name" class="form-control"
+                     value="{{ form.initial.first_name }}" placeholder="eg. John">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="last_name" class="form-label">Last Name</label>
+              <input type="text" name="last_name" id="last_name" class="form-control"
+                     value="{{ form.initial.last_name }}" placeholder="eg. Doe">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" name="email" id="email" class="form-control"
+                     value="{{ form.initial.email }}" placeholder="eg. john@example.com">
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" name="username" id="username" class="form-control"
+                     value="{{ form.initial.username }}" placeholder="eg. johndoe123">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="bio" class="form-label">Bio</label>
+            <textarea name="bio" id="bio" rows="5" class="form-control"
+                      placeholder="Tell us about yourself...">{{ form.instance.bio }}</textarea>
+          </div>
+
+          <div class="text-end">
+            <button type="submit" class="btn bg-gradient-dark">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <script>
+  setTimeout(function() {
+    const container = document.getElementById('message-container');
+    if (container) {
+      container.style.transition = "opacity 0.5s ease-out";
+      container.style.opacity = 0;
+      setTimeout(() => container.remove(), 500);
+    }
+  }, 5000); // 5 seconds
+</script>
+{% endblock dashboard %}

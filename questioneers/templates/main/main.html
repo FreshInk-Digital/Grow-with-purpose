@@ -55,53 +55,39 @@
   </li>
 
   <!-- Account (Collapsible Section) -->
-  <li class="nav-item">
-    <a data-bs-toggle="collapse" href="#applicationsExamples" class="nav-link collapsed" role="button" data-bs-toggle="collapse" aria-controls="applicationsExamples" role="button" aria-expanded="false">
-      <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
-        <!-- Account SVG Icon -->
-        🧑‍💼
-      </div>
-      <span class="nav-link-text ms-1">Account</span>
-    </a>
-    <div class="collapse" id="applicationsExamples">
-      <ul class="nav ms-4 ps-3">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span class="sidenav-mini-icon">P</span>
-            <span class="sidenav-normal">Profile</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span class="sidenav-mini-icon">R</span>
-            <span class="sidenav-normal">Reset Password</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" aria-expanded="false" href="#errorExample">
-            <span class="sidenav-mini-icon">E</span>
-            <span class="sidenav-normal">Error <b class="caret"></b></span>
-          </a>
-          <div class="collapse" id="errorExample">
-            <ul class="nav nav-sm flex-column">
-              <li class="nav-item">
-                <a class="nav-link" href="https://demos.creative-tim.com/marketplace/soft-ui-dashboard-pro/pages/authentication/error/404.html">
-                  <span class="sidenav-mini-icon text-xs">E</span>
-                  <span class="sidenav-normal">Error 404</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://demos.creative-tim.com/marketplace/soft-ui-dashboard-pro/pages/authentication/error/500.html">
-                  <span class="sidenav-mini-icon text-xs">E</span>
-                  <span class="sidenav-normal">Error 500</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+{% with request.resolver_match.url_name as current_url %}
+<li class="nav-item">
+  <a data-bs-toggle="collapse"
+     href="#account"
+     class="nav-link {% if current_url in 'profile reset-password' %}active{% endif %}"
+     aria-controls="account"
+     aria-expanded="{% if current_url in 'profile reset-password' %}true{% else %}false{% endif %}"
+     role="button">
+    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
+      🧑‍💼
     </div>
-  </li>
+    <span class="nav-link-text ms-1">Account</span>
+  </a>
+
+  <div class="collapse {% if current_url in 'profile reset-password' %}show{% endif %}" id="account">
+    <ul class="nav ms-4 ps-3">
+      <li class="nav-item">
+        <a class="nav-link {% if current_url == 'profile' %}active text-primary{% endif %}" href="{% url 'profile' %}">
+          <span class="sidenav-mini-icon">P</span>
+          <span class="sidenav-normal">Profile</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if current_url == 'reset-password' %}active text-primary{% endif %}" href="{% url 'reset-password' %}">
+          <span class="sidenav-mini-icon">R</span>
+          <span class="sidenav-normal">Reset Password</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</li>
+{% endwith %}
+
 
   <hr class="horizontal dark mt-4">
 
@@ -135,84 +121,49 @@
     
     <!-- Navbar -->
 <!--<nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
-</nav>
-<div class="container-fluid py-1 px-3 d-flex position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
-</div>-->
-<img src="{% static 'assets/img/nav.png' %}" 
+</nav>-->
+<div class="container-fluid w-95 bg-gradient-primary py-4 px-5 my-3 mx-4 shadow-none border-radius-xl z-index-sticky text-center" 
+     style="min-height: 100px;"
+     id="navbarBlur" data-scroll="true">
+
+  <h6 class="text-white fw-bold display-6 m-0" style="letter-spacing: 1px;">
+    GROWING PURPOSE
+  </h6>
+
+</div>
+
+
+
+<!--<img src="{% static 'assets/img/nav.png' %}" 
 alt="top-image" 
-class="py-1 px-3 position-sticky w-95 rounded shadow-sm mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" 
+class="py-1 px-3 position-sticky w-95 rounded shadow-sm mt-4 top-1 px-0 mx-4 bg-gradient-primary shadow-none border-radius-xl z-index-sticky" 
 id="navbarBlur" 
 data-scroll="true" 
-style="max-height: 150px;object-fit: cover;">
+style="max-height: 150px;object-fit: cover;">-->
 <!-- End Navbar -->
 
 
     <div class="container-fluid py-4">
-      <!--<div class="row">
-        <div class="col-lg-10 position-relative z-index-2">
-          <div class="card card-plain mb-1">
-            <div class="card-body p-0">
-              <div class="row">
-                <div class="col-lg-9">
-                  <div class="d-flex h-10">
-                    <p class=" text-sm ms-2">Growth is powerful when it’s intentional. Move forward with clarity,
-                       align your efforts with your values, and pursue goals that truly matter. Don’t just grow—grow 
-                       with purpose and direction.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div> 
-          </div>
           
-        </div>
-      </div>-->
-
-      
 
 {% block dashboard %}
 
 
 {% endblock dashboard %}
 
+    </div>
               
       <!--Footer-->
       <footer class="footer bg-gradient-dark border-radius-lg py-3 pe-1 mt-3">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-white text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                Designed & Monitored <i class="fa fa-heart text-danger"></i> by
+            <div class="col-lg-12 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-white text-lg-center">
+                Designed & Monitored by
                 <a href="https://www.instagram.com/freshink_digital/" class="font-weight-bold text-white" target="_blank">Freshink Digital</a>
               </div>
             </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-white" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-white" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-white" target="_blank" aria-label="X (Twitter)">
-                    <i class="fab fa-x-twitter"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link pe-0 text-white" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </div>
       </footer>
@@ -290,11 +241,14 @@ style="max-height: 150px;object-fit: cover;">
       </div>
     </div>
   </div>
+  
   <!--   Core JS Files   -->
-  <script src="../../assets/js/core/popper.min.js"></script>
-  <script src="../../assets/js/core/bootstrap.min.js"></script>
-  <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/soft-ui-dashboard.min9f1e.js' %}"></script>
+
   <!-- Kanban scripts -->
   <script src="{% static 'assets/js/plugins/dragula/dragula.min.js' %}"></script>
   <script src="{% static 'assets/js/plugins/jkanban/jkanban.js' %}"></script>
@@ -437,11 +391,6 @@ style="max-height: 150px;object-fit: cover;">
 </body>
 
 
- <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
-  <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
-  <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
-  <script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
-  <script src="{% static 'assets/js/plugins/dragula/dragula.min.js' %}"></script>
-  <script src="{% static 'assets/js/plugins/jkanban/jkanban.js' %}"></script>
-  <script src="{% static 'assets/js/soft-ui-dashboard.min9f1e.js' %}"></script>
+ 
+ 
 </html>
