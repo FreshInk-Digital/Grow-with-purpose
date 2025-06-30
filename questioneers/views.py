@@ -7,19 +7,33 @@ from .models import Inquiry, UserProfile
 
 
 # sign in logic
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+# sign in logic
 def signin(request):
     if request.method == 'POST':
         username_or_email = request.POST.get('username')
         password = request.POST.get('password')
+        remember = request.POST.get('remember_me')  # <-- capture checkbox
 
         user = authenticate(request, username=username_or_email, password=password)
         if user is not None:
             login(request, user)
+
+            # Set session expiry
+            if not remember:
+                request.session.set_expiry(0)  # session expires on browser close
+            else:
+                request.session.set_expiry(1209600)  # 2 weeks
+
             return redirect('dashboard')
         else:
             messages.error(request, 'Invalid credentials')
 
     return render(request, 'authenticate/signin.html')
+
     
 
 # sign up logic
