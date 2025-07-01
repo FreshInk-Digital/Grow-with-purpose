@@ -63,7 +63,7 @@ def reset_password(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         users = User.objects.filter(email=email)
-        
+
         if users.exists():
             user = users.first()
             uid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -79,22 +79,9 @@ def reset_password(request):
                 "reset_link": reset_link,
             })
 
-            send_mail(
-                subject,
-                message,  # plain text fallback
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email],
-                fail_silently=False,
-                html_message=message,  # uses your password_reset_email.html
-                headers={
-                    'X-Priority': '1',
-                    'X-MSMail-Priority': 'High',
-                    'X-Mailer': 'Django Mailer',
-                }
-            )
-
-            messages.success(request, "Password reset link sent to your email.")
-            return redirect('signin')
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [user.email])
+            messages.success(request, "A reset password link has been sent.")
+            return redirect('reset-password')
         else:
             messages.success(request, "If your email is registered, a reset link has been sent.")
     return render(request, 'authenticate/reset_password.html')
