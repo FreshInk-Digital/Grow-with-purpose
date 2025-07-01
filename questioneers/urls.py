@@ -1,4 +1,5 @@
 from django.urls import path
+from django.shortcuts import redirect
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -6,7 +7,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    path('', views.signin, name='signin'),
+    path('', lambda request: redirect('signin')), 
     path('signup/', views.signup, name='signup'),
     path('signout/', views.signout, name='signout'),
     path('reset-password/', views.reset_password, name='reset-password'),
