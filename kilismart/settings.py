@@ -13,8 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3hwg-&c*=f#q*s+g=^0f0uz#jb-^02ig4p_9n2gj%2l)giaw(p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-# DEBUG = 'True'
+# DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -22,6 +22,10 @@ CSRF_TRUSTED_ORIGINS = [
     'https://grow-with-purpose-production.up.railway.app',
 ]
 
+# production config
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
 
 # Application definition
 
@@ -97,6 +101,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+if os.getenv("DJANGO_DEVELOPMENT") == "True":
+    PASSWORD_RESET_TIMEOUT = 60
+else:
+    PASSWORD_RESET_TIMEOUT = 60 * 15
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
@@ -130,4 +140,14 @@ MESSAGE_TAGS = {
 
 # static files handling
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# email configuratioins
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # or 'smtp.mail.yahoo.com' for Yahoo
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'jacobgijjah@gmail.com'  # or Yahoo/Zoho/etc.
+EMAIL_HOST_PASSWORD = 'vrzh yfus zuds iaca'  # NOT your email password
+DEFAULT_FROM_EMAIL = 'GWP-PWD-RESET'
 
