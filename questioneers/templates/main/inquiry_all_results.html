@@ -1,0 +1,54 @@
+{% extends "./main.html" %}
+{% block title %}All Past Inquiries – GWP{% endblock %}
+{% block dashboard %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card bg-light border">
+        <div class="card-header text-center">
+          <h5 class="mb-0">📚 All Your Inquiry Submissions</h5>
+          <p class="text-sm mb-0">Below are your previously submitted answers with their guiding questions.</p>
+        </div>
+        <div class="card-body">
+          {% if inquiries %}
+            {% for inquiry in inquiries %}
+              <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-gradient-primary text-white">
+                  <h6 class="mb-0">Submitted on {{ inquiry.submitted_at|date:"F j, Y, g:i a" }}</h6>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <strong>🎨 Create:</strong> What do you love to make and create?<br>{{ inquiry.create }}
+                    </li>
+                    <li class="list-group-item">
+                      <strong>📖 Study:</strong> What subjects or skills do you enjoy learning?<br>{{ inquiry.study }}
+                    </li>
+                    <li class="list-group-item">
+                      <strong>🛠️ Work (Vocation):</strong> What kind of work would you like to do?<br>{{ inquiry.work }}
+                    </li>
+                    <li class="list-group-item">
+                      <strong>❤️ Feel:</strong> How are you feeling inside these days?<br>{{ inquiry.feel }}
+                    </li>
+                    <li class="list-group-item">
+                      <strong>🏃 Move (Body):</strong> How does your body like to move and stay active?<br>{{ inquiry.move }}
+                    </li>
+                    <li class="list-group-item">
+                      <strong>🌙 Be (Rest & Soul):</strong> What helps you stay calm or peaceful?<br>{{ inquiry.be }}
+                    </li>
+                    <li class="list-group-item">
+                      <strong>🧩 Connect:</strong> Who or what do you feel close to?<br>{{ inquiry.connect }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-center text-muted">You haven’t submitted any inquiries yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

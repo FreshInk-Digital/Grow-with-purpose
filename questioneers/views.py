@@ -142,6 +142,16 @@ def inquiry_results(request):
     })
 
 
+@login_required
+def inquiry_all_results(request):
+    inquiries = Inquiry.objects.filter(user=request.user).order_by('-submitted_at')
+    return render(request, 'main/inquiry_all_results.html', {
+        'inquiries': inquiries,
+        'page_title': 'All Past Inquiries'
+    })
+
+
+
 # Profile
 @login_required
 def profile(request):

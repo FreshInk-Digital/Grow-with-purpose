@@ -19,6 +19,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('inquiry/', views.inquiry, name='inquiry'),
     path('inquiry/results/', views.inquiry_results, name='inquiry_results'),
+    path('inquiry/history/', views.inquiry_all_results, name='inquiry_all_results'),
     path('profile/', views.profile, name='profile'),
 ]
 if settings.DEBUG:
