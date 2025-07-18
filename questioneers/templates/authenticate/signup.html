@@ -1,61 +1,128 @@
 {% extends "./header.html" %}
 {% load static %}
 {% block title %}Sign Up – GWP{% endblock %}
-
 {% block content %}
 
-    <div class="container">
-      <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
-        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
-          <div class="card z-index-0">
-            <div class="card-header text-center pt-4">
-              <h5>Sign up</h5>
+<div class="container">
+  <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+      <div class="card z-index-0">
+        <div class="card-header text-center pt-4">
+          <h5>Sign up</h5>
+        </div>
+
+        <div class="card-body">
+          <form method="post" class="text-start" id="signup-form">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              {{ form.username }} {{ form.username.errors }}
             </div>
-            
-            <div class="card-body">
-              <form method="post" class="text-start">
-  {% csrf_token %}
-  
-  <div class="mb-3">
-    {{ form.username }}
-    {{ form.username.errors }}
-  </div>
 
-  <div class="mb-3">
-    {{ form.email }}
-    {{ form.email.errors }}
-  </div>
+            <div class="mb-3">{{ form.email }} {{ form.email.errors }}</div>
 
-  <div class="mb-3">
-    {{ form.password1 }}
-    {{ form.password1.errors }}
-  </div>
-
-  <div class="mb-3">
-    {{ form.password2 }}
-    {{ form.password2.errors }}
-  </div>
-
-  <div class="text-center">
-    <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">Sign up</button>
-  </div>
-
-  <div class="mb-2 position-relative text-center">
-    <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
-      or
-    </p>
-  </div>
-
-  <div class="text-center">
-    <a href="{% url 'signin' %}" class="btn bg-gradient-dark w-100 mt-2 mb-4">Sign in</a>
-  </div>
-</form>
-
+            <div class="mb-3">
+              {{ form.password1 }} {{ form.password1.errors }}
+              <div id="password1-feedback" class="invalid-feedback"></div>
             </div>
-          </div>
+
+            <div class="mb-3">
+              {{ form.password2 }} {{ form.password2.errors }}
+              <div id="password2-feedback" class="invalid-feedback"></div>
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn bg-gradient-info w-100 my-4 mb-2"
+                id="signup-button"
+                disabled
+              >
+                Sign up
+              </button>
+            </div>
+
+            <div class="mb-2 position-relative text-center">
+              <p
+                class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3"
+              >
+                or
+              </p>
+            </div>
+
+            <div class="text-center">
+              <a
+                href="{% url 'signin' %}"
+                class="btn bg-gradient-dark w-100 mt-2 mb-4"
+              >
+                Sign in
+              </a>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-{% endblock %}
+  </div>
+</div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const password1 = document.querySelector('input[name="password1"]');
+    const password2 = document.querySelector('input[name="password2"]');
+    const signupButton = document.getElementById('signup-button');
+    const password1Feedback = document.getElementById('password1-feedback');
+    const password2Feedback = document.getElementById('password2-feedback');
+    
+    function checkPasswords() {
+      const password1Value = password1.value;
+      const password2Value = password2.value;
+      
+      // Reset feedback and styles
+      password1.classList.remove('is-invalid', 'is-valid');
+      password2.classList.remove('is-invalid', 'is-valid');
+      password1Feedback.textContent = '';
+      password2Feedback.textContent = '';
+      
+      // Check if passwords match and meet requirements
+      if (password1Value && password2Value) {
+        if (password1Value !== password2Value) {
+          password1.classList.add('is-invalid');
+          password2.classList.add('is-invalid');
+          password2Feedback.textContent = 'Passwords do not match';
+          signupButton.disabled = true;
+        } else {
+          password1.classList.add('is-valid');
+          password2.classList.add('is-valid');
+          signupButton.disabled = false;
+        }
+      } else {
+        signupButton.disabled = true;
+      }
+    }
+    
+    // Add event listeners to both password fields
+    password1.addEventListener('input', checkPasswords);
+    password2.addEventListener('input', checkPasswords);
+    
+    // Also check when form is submitted (as a final safeguard)
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      if (password1.value !== password2.value) {
+        e.preventDefault();
+        password1.classList.add('is-invalid');
+        password2.classList.add('is-invalid');
+        password2Feedback.textContent = 'Passwords do not match';
+      }
+    });
+  });
+</script>
 
+<style>
+  .is-valid {
+    border-color: #28a745 !important;
+  }
+  .is-invalid {
+    border-color: #dc3545 !important;
+  }
+</style>
+
+{% endblock %}ls
