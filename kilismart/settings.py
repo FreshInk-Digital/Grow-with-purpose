@@ -19,7 +19,7 @@ DEBUG = 'True'
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://grow-with-purpose-production.up.railway.app',
+    'https://growithpurpose.up.railway.app',
 ]
 
 # production config

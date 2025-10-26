@@ -14,12 +14,115 @@
   <link href="{% static 'assets/css/soft-ui-dashboard.min9f1e.css' %}" rel="stylesheet">
 </head>
 
+<!-- responsive style -->
+<style>
+.navbar-toggler {
+  border: none;
+  background: transparent;
+  padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Ensure proper z-indexing */
+#sidenav-main {
+  z-index: 1032;
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+  /* Mobile sidebar behavior */
+@media (max-width: 1199.98px) {
+  .sidenav {
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+    position: fixed;
+    z-index: 1032;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  .sidenav.show {
+    transform: translateX(0);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .g-sidenav-show .main-content {
+    margin-left: 0 !important;
+  }
+  
+  #navbarBlur {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+  }
+  
+  .navbar-toggler-icon i {
+    color: #67748e;
+    font-size: 1.2rem;
+  }
+}
+
+/* Ensure backdrop click works */
+.sidenav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1031;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.sidenav-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+  
+  @media (min-width: 1200px) {
+    .g-sidenav-show .main-content {
+      margin-left: 280px;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .container-fluid {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+</style>
+
 <body class="g-sidenav-show  bg-gray-100">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+
+<!-- Mobile Toggle Button -->
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl position-sticky top-1 z-index-sticky d-lg-none d-block" id="navbarBlur">
+  <div class="container-fluid py-1 px-2">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <i class="fas fa-bars"></i>
+      </span>
+    </button>
+  </div>
+</nav>
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3" id="sidenav-main">
+  <div class="sidenav-header">
+    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="">
-<img src="{% static 'assets/img/logo-ct-dark.png' %}" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="{% static 'assets/img/logo-ct-dark.png' %}" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">GWP</span>
       </a>
     </div>
@@ -111,41 +214,19 @@
     </div>
   </aside>
 
-  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    
-    <!-- Navbar -->
-<!--<nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
-</nav>-->
-<div class="container-fluid w-95 bg-gradient-primary py-4 px-5 my-3 mx-4 shadow-none border-radius-xl z-index-sticky text-center" 
-     style="min-height: 100px;"
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+<div class="container-fluid w-95 bg-gradient-primary py-3 py-sm-4 px-3 px-sm-5 my-2 my-sm-3 mx-2 mx-sm-4 shadow-none border-radius-xl z-index-sticky text-center" 
+     style="min-height: auto;"
      id="navbarBlur" data-scroll="true">
-
-  <h6 class="text-white fw-bold display-6 m-0" style="letter-spacing: 1px;">
+  <h6 class="text-white fw-bold m-0" style="font-size: clamp(1.5rem, 4vw, 2.5rem); letter-spacing: 1px;">
     GROWING PURPOSE
   </h6>
-
 </div>
 
 
-
-<!--<img src="{% static 'assets/img/nav.png' %}" 
-alt="top-image" 
-class="py-1 px-3 position-sticky w-95 rounded shadow-sm mt-4 top-1 px-0 mx-4 bg-gradient-primary shadow-none border-radius-xl z-index-sticky" 
-id="navbarBlur" 
-data-scroll="true" 
-style="max-height: 150px;object-fit: cover;">-->
-<!-- End Navbar -->
-
-
-    <div class="container-fluid py-4">
-          
-
-{% block dashboard %}
-
-
-{% endblock dashboard %}
-
-    </div>
+ <div class="container-fluid py-4 px-3 px-md-4 px-lg-5">
+    {% block dashboard %}{% endblock %}
+  </div>
               
       <!--Footer-->
       <footer class="footer bg-gradient-dark border-radius-lg py-3 pe-1 mt-3">
@@ -251,6 +332,66 @@ style="max-height: 150px;object-fit: cover;">-->
   <script src="{% static 'assets/js/plugins/orbit-controls.js' %}"></script>
   
   <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const iconSidenav = document.getElementById('iconSidenav');
+  const sidenav = document.getElementById('sidenav-main');
+  
+  if (iconSidenav && sidenav) {
+    iconSidenav.addEventListener('click', function() {
+      sidenav.classList.toggle('show');
+    });
+  }
+  
+  // Close sidenav when clicking outside on mobile
+document.addEventListener('DOMContentLoaded', function() {
+  const iconSidenav = document.getElementById('iconSidenav');
+  const sidenav = document.getElementById('sidenav-main');
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const body = document.querySelector('body');
+  
+  // Create backdrop element
+  const backdrop = document.createElement('div');
+  backdrop.className = 'sidenav-backdrop';
+  body.appendChild(backdrop);
+  
+  // Toggle sidebar function
+  function toggleSidenav() {
+    sidenav.classList.toggle('show');
+    backdrop.classList.toggle('show');
+    body.classList.toggle('g-sidenav-pinned');
+  }
+  
+  // Mobile toggle button
+  if (navbarToggler) {
+    navbarToggler.addEventListener('click', function() {
+      toggleSidenav();
+    });
+  }
+  
+  // Close button inside sidebar
+  if (iconSidenav) {
+    iconSidenav.addEventListener('click', function() {
+      toggleSidenav();
+    });
+  }
+  
+  // Close when clicking on backdrop
+  backdrop.addEventListener('click', function() {
+    toggleSidenav();
+  });
+  
+  // Automatically hide sidebar on larger screens
+  function handleResize() {
+    if (window.innerWidth >= 1200) {
+      sidenav.classList.remove('show');
+      backdrop.classList.remove('show');
+      body.classList.remove('g-sidenav-pinned');
+    }
+  }
+  
+  window.addEventListener('resize', handleResize);
+  handleResize(); // Initialize
+});
 
     (function() {
       const container = document.getElementById("globe");
